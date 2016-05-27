@@ -16,7 +16,7 @@ production:
 
   adapter: postgresql
   encoding: unicode
-  database: my_project_production
+  database: pivipedik
   pool: 5
-  username: my_project
-  password: my_project
+  username: apps
+  password: 
