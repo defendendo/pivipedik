@@ -4,15 +4,32 @@ class SubjectsController < ApplicationController
 
   def index
     if params[:search]
-      @subjects = Subject.where('title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 7)
+      @subjects = Subject.where('title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 20)
     else
-      @subjects = Subject.all.order("created_at DESC").paginate(page: params[:page], per_page: 7)
+      @subjects = Subject.all.order("created_at DESC").paginate(page: params[:page], per_page: 20)
     end
+  end
+
+  def new
+    @subject = Subject.new
   end
 
   def show
     @subject = Subject.find(params[:id])
-    @posts = @subject.posts.order("created_at DESC").paginate(page: params[:page], per_page: 3)
+    @posts = @subject.posts.order("created_at DESC").paginate(page: params[:page], per_page: 6)
+  end
+
+  def edit
+    @subject = Subject.find(params[:id])
+  end
+
+  def create
+    @subject = Subject.new(subject_params)
+    if @subject.save
+      redirect_to subjects_path
+    else
+      render :new
+    end
   end
 
   def update
