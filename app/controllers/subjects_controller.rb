@@ -6,7 +6,7 @@ class SubjectsController < ApplicationController
     if params[:search]
       @subjects = Subject.where('title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 20)
     else
-      @subjects = Subject.all.order("created_at DESC").paginate(page: params[:page], per_page: 20)
+      @subjects = Subject.all.order("created_at DESC").paginate(page: params[:page], per_page: 30)
     end
   end
 
@@ -16,7 +16,7 @@ class SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find(params[:id])
-    @posts = @subject.posts.order("created_at DESC").paginate(page: params[:page], per_page: 6)
+    @posts = @subject.posts.order("created_at DESC").paginate(page: params[:page], per_page: 50)
   end
 
   def edit
