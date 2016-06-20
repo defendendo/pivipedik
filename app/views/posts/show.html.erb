@@ -15,7 +15,7 @@
           <p> <%= link_to like_subject_post_path(@post.subject, @post), 
             method: :put, 
             class: "btn btn-default pull-right" do %>
-              <span class="glyphicon glyphicon-hand-up"></span>
+              <span class="glyphicon glyphicon-chevron-up"></span>
               <%= @post.get_upvotes.size %>
             <% end %> </p>
         </div>
