@@ -8,11 +8,19 @@
 </div>
 
 <div class="text-center">
-  <p> <%= link_to new_subject_post_path(@subject) , 
+  
+  <% if current_user && @subject.editable_by?(current_user) %>
+    <%= link_to edit_subject_path(@subject), 
     class: "btn btn-default" do %>
-      <span class="glyphicon glyphicon-upload"></span>
+      <span class="glyphicon glyphicon-pencil"></span>
     <% end %> 
-  </p>
+  <% end %> 
+
+  <%= link_to new_subject_post_path(@subject) , 
+    class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-upload"></span>
+  <% end %> 
+
 </div>
 
 <br>
@@ -31,9 +39,9 @@
       <p> 
         <% if current_user && post.editable_by?(current_user) %>
           <%= link_to edit_subject_post_path(post.subject, post), 
-            class: "btn btn-default" do %>
-              <span class="glyphicon glyphicon-pencil"></span>
-            <% end %> 
+          class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %> 
         <% end %>  
         <%= link_to like_subject_post_path(post.subject, post), 
           method: :put, 

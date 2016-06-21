@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy] 
 
   def index
     if params[:search]
@@ -20,11 +20,11 @@ class SubjectsController < ApplicationController
   end
 
   def edit
-    @subject = Subject.find(params[:id])
+    @subject = current_user.subjects.find(params[:id])
   end
 
   def create
-    @subject = Subject.new(subject_params)
+    @subject = current_user.subjects.new(subject_params)
     if @subject.save
       redirect_to subject_path(@subject)
     else
@@ -33,7 +33,7 @@ class SubjectsController < ApplicationController
   end
 
   def update
-    @subject = Subject.find(params[:id])
+    @subject = current_user.subjects.find(params[:id])
     if @subject.update(subject_params)
       redirect_to subjects_path
     else
@@ -42,7 +42,7 @@ class SubjectsController < ApplicationController
   end
 
   def destroy
-    @subject = Subject.find(params[:id])
+    @subject = current_user.subjects.find(params[:id])
     @subject.destroy
     redirect_to subjects_path
   end
