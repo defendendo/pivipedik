@@ -4,7 +4,7 @@ class SubjectsController < ApplicationController
 
   def index
     if params[:search]
-      @subjects = Subject.where('title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 20)
+      @subjects = Subject.where('lower(title) LIKE ?', "%#{params[:search].downcase}%").paginate(page: params[:page], per_page: 20)
     else
       @subjects = Subject.all.order("created_at DESC").paginate(page: params[:page], per_page: 30)
     end
