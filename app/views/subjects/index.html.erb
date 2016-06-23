@@ -7,11 +7,11 @@
     
       <div class="substext">
       <h2>
-        <%= link_to(truncate(subject.title, length:70), subject) %>
+        <%= link_to(truncate(subject.title, length:100), subject) %>
       </h2>
 
       <p>
-        <%= simple_format(subject.description) %>
+        <%= simple_format(truncate(subject.description, length:500)) %>
       </p>
       </div>
 
