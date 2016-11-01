@@ -22,6 +22,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'social-share-button'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'seed_dump'
 
 group :development do
 	gem 'capistrano', '~> 3.5.0'
